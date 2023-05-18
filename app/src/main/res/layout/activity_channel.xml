@@ -11,7 +11,8 @@
         android:layout_height="200dp"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ar_support_icon"/>
+        android:src="@drawable/ar_support_icon"
+        android:visibility="gone"/>
 
     <EditText
         android:id="@+id/channel_edit_text"

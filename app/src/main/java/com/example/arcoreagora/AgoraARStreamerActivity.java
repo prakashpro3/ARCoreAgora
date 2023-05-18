@@ -46,6 +46,7 @@ import com.google.ar.core.PointCloud;
 import com.google.ar.core.Session;
 import com.google.ar.core.Trackable;
 import com.google.ar.core.TrackingState;
+import com.google.ar.core.exceptions.CameraNotAvailableException;
 import com.google.ar.core.exceptions.UnavailableApkTooOldException;
 import com.google.ar.core.exceptions.UnavailableArcoreNotInstalledException;
 import com.google.ar.core.exceptions.UnavailableSdkTooOldException;
@@ -281,7 +282,11 @@ public class AgoraARStreamerActivity extends AppCompatActivity implements GLSurf
 
         showLoadingMessage();
         // Note that order matters - see the note in onPause(), the reverse applies here.
-        mSession.resume();
+        try {
+            mSession.resume();
+        } catch (CameraNotAvailableException e) {
+            throw new RuntimeException(e);
+        }
         mSurfaceView.onResume();
         mDisplayRotationHelper.onResume();
     }
